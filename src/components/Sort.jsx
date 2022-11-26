@@ -1,22 +1,42 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setSort } from "../redux/slices/filterSlice";
 
-function Sort({ selected, onClickListItem }) {
+export const list = [
+  { sortName: "популярности", sortType: "rating" },
+  { sortName: "цене(сначала дешевые)", sortType: "-price" },
+  { sortName: "цене(сначала дорогие)", sortType: "price" },
+  { sortName: "алфавиту", sortType: "title" },
+];
+
+function Sort() {
+  const sort = useSelector((state) => state.filter.sortObj);
+  const dispatch = useDispatch();
+  const sortRef = React.useRef();
+
   const [isOpenedPopUp, setIsOpenedPopUp] = React.useState(false);
-  const list = [
-    "популярности",
-    "цене(сначала дешевые)",
-    "цене(сначала дорогие)",
-    "алфавиту",
-  ];
-  const selectedSortName = list[selected];
 
-  const handleClickListItem = (index) => {
-    onClickListItem(index);
+  const handleClickListItem = (el) => {
+    dispatch(setSort(el));
     setIsOpenedPopUp(!isOpenedPopUp);
   };
 
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.path.includes(sortRef.current)) {
+        setIsOpenedPopUp(false);
+      }
+    };
+
+    document.body.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.body.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="sort">
+    <div ref={sortRef} className={isOpenedPopUp ? "sort active" : "sort"}>
       <div
         className="sort__label"
         onClick={() => setIsOpenedPopUp(!isOpenedPopUp)}
@@ -34,7 +54,7 @@ function Sort({ selected, onClickListItem }) {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span>{selectedSortName}</span>
+        <span>{sort.sortName}</span>
       </div>
 
       {isOpenedPopUp && (
@@ -43,10 +63,10 @@ function Sort({ selected, onClickListItem }) {
             {list.map((el, i) => (
               <li
                 key={i}
-                onClick={() => handleClickListItem(i)}
-                className={selected === i ? "active" : ""}
+                onClick={() => handleClickListItem(el)}
+                className={sort.sortName === el.sortName ? "active" : ""}
               >
-                {el}
+                {el.sortName}
               </li>
             ))}
           </ul>

@@ -9,6 +9,7 @@
 
     svg {
       margin-right: 8px;
+      transition: transform ease-in-out 0.1s;
     }
 
     b {
@@ -48,5 +49,11 @@
         }
       }
     }
+  }
+}
+
+.sort.active {
+  svg {
+    transform: rotate(180deg);
   }
 }
