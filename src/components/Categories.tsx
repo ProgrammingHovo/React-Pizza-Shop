@@ -1,16 +1,17 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategoryId } from "../redux/slices/filterSlice";
+import { RootState } from "../redux/store";
 
-function Categories() {
-  const categoryId = useSelector((state) => state.filter.categoryId);
+const Categories: React.FC = React.memo(() => {
+  const categoryId = useSelector((state: RootState) => state.filter.categoryId);
   const dispatch = useDispatch();
 
-  const onClickCategory = (id) => {
+  const onClickCategory = (id: number) => {
     dispatch(setCategoryId(id));
   };
 
-  const categories = [
+  const categories: string[] = [
     "Все",
     "Мясные",
     "Вегетарианская",
@@ -34,6 +35,6 @@ function Categories() {
       </ul>
     </div>
   );
-}
+});
 
 export default Categories;

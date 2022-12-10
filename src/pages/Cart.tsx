@@ -5,11 +5,12 @@ import { clearItems } from "../redux/slices/cartSlice";
 
 import CartItem from "../components/CartItem";
 import CartEmpty from "./CartEmpty";
+import { RootState } from "../redux/store";
 
-function Cart() {
+const Cart: React.FC = () => {
   const dispatch = useDispatch();
 
-  const { totalPrice, items } = useSelector((state) => state.cart);
+  const { totalPrice, items } = useSelector((state: RootState) => state.cart);
 
   const handleClickClearCart = () => {
     dispatch(clearItems());
@@ -102,7 +103,7 @@ function Cart() {
             <span>
               Всего пицц:{" "}
               <b>
-                {items.reduce((sum, item) => {
+                {items.reduce((sum: number, item) => {
                   return item.count + sum;
                 }, 0)}{" "}
                 шт.
@@ -145,6 +146,6 @@ function Cart() {
   ) : (
     <CartEmpty />
   );
-}
+};
 
 export default Cart;

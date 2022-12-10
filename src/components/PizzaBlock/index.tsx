@@ -1,24 +1,43 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addItem } from "../../redux/slices/cartSlice";
+import { RootState } from "../../redux/store";
+import { Link } from "react-router-dom";
 
-function PizzaBlock({ id, title, price, imageUrl, sizes, types }) {
+type PizzaBlockProps = {
+  id: string;
+  title: string;
+  types: number[];
+  sizes: number[];
+  price: number;
+  count: number;
+  imageUrl: string;
+};
+
+const PizzaBlock: React.FC<PizzaBlockProps> = ({
+  id,
+  title,
+  price,
+  imageUrl,
+  sizes,
+  types,
+}) => {
   const typeNames = ["тонкое", "традиционное"];
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
 
   const dispatch = useDispatch();
-  const addedItem = useSelector((state) =>
+  const addedItem = useSelector((state: RootState) =>
     state.cart.items.find((item) => item.id === id)
   );
 
   const addedItemCount = addedItem ? addedItem.count : 0;
 
-  const handleClickType = (type) => {
+  const handleClickType = (type: number) => {
     setActiveType(type);
   };
 
-  const handleClickSize = (size) => {
+  const handleClickSize = (size: number) => {
     setActiveSize(size);
   };
 
@@ -31,6 +50,7 @@ function PizzaBlock({ id, title, price, imageUrl, sizes, types }) {
         imageUrl,
         size: sizes[activeSize],
         type: typeNames[activeType],
+        count: 0,
       })
     );
   };
@@ -38,8 +58,10 @@ function PizzaBlock({ id, title, price, imageUrl, sizes, types }) {
   return (
     <div className="pizza-block-wrapper">
       <div className="pizza-block">
-        <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
-        <h4 className="pizza-block__title">{title}</h4>
+        <Link to={"/pizza/" + id}>
+          <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+          <h4 className="pizza-block__title">{title}</h4>
+        </Link>
         <div className="pizza-block__selector">
           <ul>
             {types.map((type) => (
@@ -89,6 +111,6 @@ function PizzaBlock({ id, title, price, imageUrl, sizes, types }) {
       </div>
     </div>
   );
-}
+};
 
 export default PizzaBlock;

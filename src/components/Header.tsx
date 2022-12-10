@@ -1,11 +1,24 @@
 import { Link, useLocation } from "react-router-dom";
 import Search from "./Search";
 import { useSelector } from "react-redux";
+import React from "react";
+import { RootState } from "../redux/store";
 
-function Header() {
-  const { totalPrice, items } = useSelector((state) => state.cart);
+const Header: React.FC = () => {
+  const { totalPrice, items } = useSelector((state: RootState) => state.cart);
+
+  const isMounted = React.useRef(false);
 
   const location = useLocation();
+
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const itemsJSON = JSON.stringify(items);
+      localStorage.setItem("cart", itemsJSON);
+    }
+
+    isMounted.current = true;
+  }, [items]);
 
   return (
     <div className="header">
@@ -59,7 +72,7 @@ function Header() {
                     />
                   </svg>
                   <span>
-                    {items.reduce((sum, item) => {
+                    {items.reduce((sum: number, item) => {
                       return item.count + sum;
                     }, 0)}
                   </span>
@@ -71,6 +84,6 @@ function Header() {
       </div>
     </div>
   );
-}
+};
 
 export default Header;

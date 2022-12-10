@@ -2,8 +2,12 @@ import React from "react";
 import qs from "qs";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useSelector, useDispatch } from "react-redux";
-import { setCurrentPage, setFilters } from "../redux/slices/filterSlice";
+import { useSelector } from "react-redux";
+import {
+  FilterSliceType,
+  setCurrentPage,
+  setFilters,
+} from "../redux/slices/filterSlice";
 import { fetchPizzas } from "../redux/slices/pizzasSlice";
 
 import Categories from "../components/Categories";
@@ -11,15 +15,16 @@ import Sort, { list } from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import PizzaLoadingBlock from "../components/PizzaBlock/PizzaLoadingBlock";
 import Pagination from "../components/Pagination";
+import { RootState, useAppDispatch } from "../redux/store";
 
-function Home() {
-  const dispatch = useDispatch();
+const Home: React.FC = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const { categoryId, sortObj, currentPage, searchValue } = useSelector(
-    (state) => state.filter
+    (state: RootState) => state.filter
   );
-  const { items, status } = useSelector((state) => state.pizzas);
+  const { items, status } = useSelector((state: RootState) => state.pizzas);
 
   const isSearching = React.useRef(false);
   const isMounted = React.useRef(false);
@@ -45,12 +50,18 @@ function Home() {
 
       const params = qs.parse(window.location.search.substring(1));
 
-      const sort = list.find((obj) => obj.sortType === params.sortType);
+      let sort;
+
+      if (params.sortType) {
+        sort = list.find((obj) => obj.sortType === params.sortType);
+      }
 
       dispatch(
         setFilters({
-          ...params,
-          sort,
+          categoryId: Number(params.categoryId),
+          sortObj: sort ? sort : list[0],
+          currentPage: Number(params.currentPage),
+          searchValue: "",
         })
       );
     }
@@ -82,14 +93,10 @@ function Home() {
   }, [categoryId, sortObj, currentPage, searchValue]);
 
   const pizzas = items
-    .filter((pizza) => {
+    .filter((pizza: any) => {
       return pizza.title.toLowerCase().includes(searchValue.toLowerCase());
     })
-    .map((pizza) => (
-      <Link to={"/pizza/" + pizza.id} key={pizza.id}>
-        <PizzaBlock {...pizza} />
-      </Link>
-    ));
+    .map((pizza: any) => <PizzaBlock key={pizza.id} {...pizza} />);
 
   return (
     <>
@@ -101,7 +108,7 @@ function Home() {
       {status === "error" ? (
         <div className="content__error__info">
           <h2>
-            Произошла ошибка <icon>😕</icon>
+            Произошла ошибка <span>😕</span>
           </h2>
           <p>
             К сожалению не удалось получить пиццы.
@@ -118,10 +125,10 @@ function Home() {
       )}
       <Pagination
         value={currentPage}
-        onChange={(num) => dispatch(setCurrentPage(num))}
+        onChange={(page: number) => dispatch(setCurrentPage(page))}
       />
     </>
   );
-}
+};
 
 export default Home;
