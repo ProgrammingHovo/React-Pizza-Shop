@@ -140,6 +140,18 @@ body {
       margin: 0;
     }
   }
+
+  @media (max-width: 550px) {
+    & {
+      width: 94%;
+    }
+  }
+
+  @media (max-width: 450px) {
+    & {
+      width: 96%;
+    }
+  }
 }
 
 .cart {
@@ -152,6 +164,12 @@ body {
   .content__items {
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 600px) {
+      & {
+        margin-top: 0px;
+      }
+    }
   }
 
   .content__title {
@@ -423,6 +441,515 @@ body {
       margin: 0 auto;
       font-weight: 600;
       font-size: 18px;
+    }
+
+    @media (max-width: 782px) {
+      width: 480px;
+    }
+
+    @media (max-width: 680px) {
+      width: 450px;
+
+      h2 {
+        font-size: 28px;
+      }
+
+      p {
+        font-size: 17px;
+      }
+    }
+
+    @media (max-width: 644px) {
+      width: 350px;
+
+      h2 {
+        font-size: 25px;
+      }
+
+      p {
+        font-size: 15px;
+      }
+
+      icon {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    @media (max-width: 440px) {
+      width: 310px;
+
+      h2 {
+        font-size: 23px;
+      }
+
+      p {
+        font-size: 13.5px;
+      }
+
+      img {
+        width: 230px;
+      }
+
+      .button--black {
+        width: 150px;
+        font-size: 13px;
+      }
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .content__title {
+      font-size: 28px;
+
+      svg {
+        width: 25px;
+        margin-right: 10px;
+      }
+    }
+
+    &__clear {
+      span {
+        font-size: 18px;
+      }
+    }
+
+    &__item {
+      width: 100%;
+      padding-top: 30px;
+      margin-top: 30px;
+
+      &-img {
+        margin-right: 15px;
+        width: 10%;
+
+        img {
+          width: 80px;
+          height: 80px;
+        }
+      }
+
+      &-info {
+        width: 40%;
+        margin-left: 10px;
+
+        h3 {
+          font-size: 22px;
+          line-height: 27px;
+        }
+
+        p {
+          font-size: 18px;
+        }
+      }
+
+      &-count {
+        width: 13%;
+
+        &-minus {
+          margin-right: 8px;
+        }
+
+        &-plus {
+          margin-left: 8px;
+        }
+
+        b {
+          font-size: 22px;
+        }
+      }
+
+      &-price {
+        width: 33%;
+
+        b {
+          font-size: 22px;
+        }
+      }
+
+      &-remove {
+        width: 4%;
+
+        .button {
+          svg {
+            width: 11.5px;
+            height: 11.5px;
+            position: relative;
+          }
+          &:hover,
+          &:active {
+            border-color: darken($color: $gray-line, $amount: 80);
+            background-color: darken($color: $gray-line, $amount: 80);
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 830px) {
+    &__item {
+      &-info {
+        margin-left: 15px;
+      }
+
+      &-price {
+        margin-left: 15px;
+
+        b {
+          font-size: 22px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 750px) {
+    .content__title {
+      font-size: 28px;
+
+      svg {
+        width: 25px;
+        margin-right: 10px;
+      }
+    }
+
+    &__clear {
+      span {
+        font-size: 18px;
+      }
+    }
+
+    &__item {
+      width: 100%;
+      padding-top: 30px;
+      margin-top: 30px;
+
+      &-img {
+        margin-right: 15px;
+        width: 10%;
+
+        img {
+          width: 80px;
+          height: 80px;
+        }
+      }
+
+      &-info {
+        width: 40%;
+        margin-left: 25px;
+
+        h3 {
+          font-size: 18px;
+          line-height: 27px;
+        }
+
+        p {
+          font-size: 15px;
+        }
+      }
+
+      &-count {
+        width: 13%;
+
+        &-minus {
+          margin-right: 8px;
+        }
+
+        &-plus {
+          margin-left: 8px;
+        }
+
+        b {
+          font-size: 19px;
+        }
+      }
+
+      &-price {
+        width: 33%;
+        margin-left: 20px;
+
+        b {
+          font-size: 19px;
+        }
+      }
+
+      &-remove {
+        width: 4%;
+
+        .button {
+          svg {
+            width: 11.5px;
+            height: 11.5px;
+            position: relative;
+          }
+          &:hover,
+          &:active {
+            border-color: darken($color: $gray-line, $amount: 80);
+            background-color: darken($color: $gray-line, $amount: 80);
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 670px) {
+    &__bottom {
+      &-details {
+        span {
+          font-size: 18px;
+        }
+      }
+
+      &-buttons {
+        .go-back-btn {
+          height: 50px;
+          width: 180px;
+
+          span {
+            font-size: 14px;
+          }
+
+          &:hover {
+            background-color: darken($color: $gray-line, $amount: 90);
+            border-color: darken($color: $gray-line, $amount: 90);
+
+            span {
+              color: $gray-line;
+            }
+          }
+
+          svg {
+            height: 11px;
+          }
+        }
+
+        .pay-btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 14px;
+          height: 50px;
+          width: 180px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 550px) {
+    .content__title {
+      font-size: 24px;
+
+      svg {
+        width: 22px;
+        margin-right: 5px;
+      }
+    }
+
+    &__clear {
+      svg {
+        width: 22px;
+      }
+
+      span {
+        margin-left: 1px;
+        font-size: 16px;
+      }
+    }
+
+    &__item {
+      width: 100%;
+      padding-top: 30px;
+      margin-top: 30px;
+
+      &-img {
+        margin-right: 15px;
+        width: 10%;
+
+        img {
+          width: 70px;
+          height: 70px;
+        }
+      }
+
+      &-info {
+        width: 40%;
+        margin-left: 25px;
+
+        h3 {
+          font-size: 16px;
+          line-height: 27px;
+        }
+
+        p {
+          font-size: 13px;
+        }
+      }
+
+      &-count {
+        width: 13%;
+        button {
+          svg {
+            width: 8px;
+          }
+        }
+
+        &-minus {
+          margin-right: 8px;
+          width: 20px !important;
+        }
+
+        &-plus {
+          margin-left: 8px;
+        }
+
+        b {
+          font-size: 14px;
+        }
+      }
+
+      &-price {
+        width: 33%;
+        margin-left: 20px;
+
+        b {
+          font-size: 14px;
+        }
+      }
+
+      &-remove {
+        width: 4%;
+
+        .button {
+          svg {
+            width: 11.5px;
+            height: 11.5px;
+          }
+          &:hover,
+          &:active {
+            border-color: darken($color: $gray-line, $amount: 80);
+            background-color: darken($color: $gray-line, $amount: 80);
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 450px) {
+    .content__title {
+      margin-left: 5px;
+      font-size: 20px;
+
+      svg {
+        width: 20px;
+        margin-right: 7px;
+      }
+    }
+
+    &__clear {
+      span {
+        font-size: 15px;
+      }
+    }
+
+    &__item {
+      width: 100%;
+      padding-top: 30px;
+      margin-top: 30px;
+
+      &-img {
+        margin-right: 15px;
+        width: 10%;
+
+        img {
+          width: 60px;
+          height: 60px;
+        }
+      }
+
+      &-info {
+        width: 40%;
+        margin-left: 15px;
+
+        h3 {
+          font-size: 15px;
+          line-height: 18px;
+        }
+
+        p {
+          font-size: 12px;
+        }
+      }
+
+      &-count {
+        width: 13%;
+        button {
+          svg {
+            width: 8px;
+          }
+        }
+
+        &-minus {
+          height: 25px;
+          margin-right: 5px;
+        }
+
+        &-plus {
+          height: 25px;
+          margin-left: 5px;
+        }
+
+        b {
+          font-size: 13px;
+        }
+      }
+
+      &-price {
+        width: 33%;
+        margin-left: 25px;
+        margin-right: 5px;
+
+        b {
+          font-size: 13px;
+        }
+      }
+
+      &-remove {
+        width: 4%;
+
+        .button {
+          height: 25px;
+        }
+      }
+    }
+
+    &__bottom {
+      &-details {
+        padding: 0px 5px 0px 5px;
+        span {
+          font-size: 15px;
+        }
+      }
+
+      &-buttons {
+        .go-back-btn {
+          height: 40px;
+          width: 155px;
+
+          span {
+            font-size: 12px;
+          }
+
+          svg {
+            height: 10px;
+            margin-right: 8px;
+          }
+        }
+
+        .pay-btn {
+          font-size: 12px;
+          height: 40px;
+          width: 155px;
+        }
+      }
     }
   }
 }

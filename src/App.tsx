@@ -20,6 +20,7 @@ function App() {
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route path="" element={<Home />} />
+
         <Route
           path="pizza/:id"
           element={

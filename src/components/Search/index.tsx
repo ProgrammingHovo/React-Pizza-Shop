@@ -32,7 +32,7 @@ const Search: React.FC = () => {
 
   return (
     <div className={styles.root}>
-      <img className={styles.icon} src="/img/search.svg" alt="search" />
+      <img className={styles.icon} src="img/search.svg" alt="search" />
       <input
         ref={inputRef}
         value={value}

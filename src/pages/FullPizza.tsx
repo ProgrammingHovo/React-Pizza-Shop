@@ -21,7 +21,7 @@ const FullPizza: React.FC = () => {
         setPizza(data);
       } catch (error) {
         alert("Не удалось найти пиццу. Вернуться на главную страницу?");
-        navigate("/");
+        navigate("");
       }
     })();
   });

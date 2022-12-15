@@ -3,6 +3,22 @@
   justify-content: center;
   align-items: center;
   position: relative;
+
+  @media (max-width: 460px) {
+    input {
+      width: 150px;
+      height: 40px;
+      padding-right: 35px;
+      padding-left: 30px;
+      font-size: 13px;
+    }
+
+    .icon {
+      width: 14px;
+      height: 14px;
+      left: 9px;
+    }
+  }
 }
 
 .input {
